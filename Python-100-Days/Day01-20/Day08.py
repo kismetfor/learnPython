@@ -42,3 +42,45 @@ print(items8[-1])
 简单的说就是位置的增量，比如我们访问的第一个元素在start位置，那么第二个元素就在start + stride位置，当然start + stride要小于end。
 """
 print(items8[1:5:1])
+
+"""
+如果start值等于0，那么在使用切片运算符时可以将其省略；
+如果end值等于N，N代表列表元素的个数，那么在使用切片运算符时可以将其省略；
+如果end值等于-N-1（因为：论述方式 1：正向索引 end = N，那么可以省略，对应最后一个索引+1，那么反向索引，也应该是end = 的数，为最后一个索引-1）
+如果stride值等于1，那么在使用切片运算符时也可以将其省略。所以，下面的代码跟上面的代码作用完全相同。
+
+"""
+items9 = ['a', 'b', 'c', 'd', 'e']
+#个人感悟：
+    #  x:y:z，z 代表的是打印的方向，z<0，从后往前；z>0，从前往后
+print(items9[0:5:1]) #0:N:1
+
+print(items9[-5:0:1])
+# print(items9[-5:0:1])切片 a[start:end:step]  start=-5，end=0，为什么 start<end，但是有问题？
+"""
+原因：
+items9[-5:5:1]  等价于items9[0:5:1]  ，那照这个源码，也等价于items9[-500000:5:1]
+处理逻辑
+if (start < 0)
+    start += length;
+if (start < 0)
+    start = 0;
+if (start > length)
+    start = length;
+    如果 start 是负数 → 加上 length 变成正索引
+如果加完还小于 0 → 设为 0
+如果大于列表长度 → 设为 length
+"""
+
+
+print(items9[-500000:5:1])
+print(items9[-1:-5:-1]) #-1:-N:-1
+
+"""
+切片 a[start:end:step] 的核心逻辑是：
+	•	如果 step > 0（正方向）
+    ➜ start 必须 < end 才能得到元素
+    ➜ 否则直接是空列表
+	•	如果 step < 0（反方向）
+➜ start 必须 > end
+"""
