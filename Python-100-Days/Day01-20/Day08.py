@@ -84,3 +84,21 @@ print(items9[-1:-5:-1]) #-1:-N:-1
 	•	如果 step < 0（反方向）
 ➜ start 必须 > end
 """
+
+"""
+总结
+讲到这里，我们可以用列表的知识来重构上面“掷色子统计每种点数出现次数”的代码。
+"""
+import random
+count = [0]*6
+for _ in range(100):
+    # random.randint(a, b) == random.randrange(a, b+1)
+    """
+    randint 内部就是：
+       def randint(self, a, b):
+            return self.randrange(a, b+1)
+    """
+    face = random.randrange(1, 7)
+    count[face-1] += 1
+
+print(count)
