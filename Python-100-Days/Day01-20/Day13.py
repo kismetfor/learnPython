@@ -34,3 +34,19 @@ print(items3)
 字典的运算
 字典中的键必须是不可变类型
 """
+person = {
+    'name': '王大锤',
+    'age': 55,
+    'height': 168,
+    'weight': 60,
+    'addr': ['成都市武侯区科华北路62号1栋101', '北京市西城区百万庄大街1号'],
+    'car': {
+        'brand': 'BMW X7',
+        'maxSpeed': '250',
+        'length': 5170,
+        'width': 2000,
+        'height': 1835,
+        'displacement': 3.0
+    }
+}
+print(person)
