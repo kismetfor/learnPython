@@ -50,3 +50,24 @@ person = {
     }
 }
 print(person)
+
+"""
+字典的方法
+字典类型的方法基本上都跟字典的键值对操作相关，
+其中get方法可以通过键来获取对应的值。
+跟索引运算不同的是，
+get方法在字典中没有指定的键时不会产生异常，
+而是返回None或指定的默认值，代码如下所示。
+"""
+person = {'name': '王大锤', 'age': 25, 'height': 178, 'addr': '成都市武侯区科华北路62号1栋101'}
+print(person.get('name'))
+print(person.get('name1'))
+print(person.get('sex', True))  # True
+"""
+如果需要获取字典中所有的键，可以使用 keys 方法；
+如果需要获取字典中所有的值，可以使用 values 方法。
+字典还有一个名为items的方法，它会将键和值组装成二元组，通过该方法来遍历字典中的元素也是非常方便的。
+"""
+print(person.keys())
+print(person.values())
+
