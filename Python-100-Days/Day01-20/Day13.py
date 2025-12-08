@@ -1,3 +1,4 @@
+
 xinhua = {
     '麓': '山脚下',
     '路': '道，往来通行的地方；方面，地区：南～货，外～货；种类：他俩是一～人',
@@ -70,4 +71,74 @@ print(person.get('sex', True))  # True
 """
 print(person.keys())
 print(person.values())
+print(person.items())
+"""
+字典的update方法实现两个字典的合并操作。
+例如，有两个字典x和y，当执行x.update(y)操作时，x跟y相同的键对应的值会被y中的值更新，
+而y中有但x中没有的键值对会直接添加到x中，代码如下所示。
 
+"""
+x = {'name': "liutao", 'age': 12, 'height': 178}
+y = {'age': 55, 'height': 190, 'money': 1000000}
+# x.update(y)
+# print(x)
+# 如果使用 Python 3.9 及以上的版本，也可以使用|运算符来完成同样的操作，代码如下所示。
+x |= y
+print(x)
+"""
+可以通过pop或popitem方法从字典中删除元素，
+前者会返回（获得）键对应的值，但是如果字典中不存在指定的键，会引发KeyError错误；
+后者在删除元素时，会返回（获得）键和值组成的二元组。
+字典的clear方法会清空字典中所有的键值对，代码如下所示。
+
+"""
+x.pop('age')
+print(x)
+x.popitem()
+print(x)
+x.clear()
+print(x)
+"""
+跟列表一样，从字典中删除元素也可以使用del关键字，在删除元素的时候如果指定的键索引不到对应的值，一样会引发KeyError错误，具体的做法如下所示。
+
+"""
+x = {'name': "liutao", 'age': 12, 'height': 178}
+del x['age']
+del x['height']
+print(x)
+
+"""
+例子1：输入一段话，统计每个英文字母出现的次数，按出现次数从高到低输出。
+"""
+sentence = input("输入一段英文句子->")
+counter = {}
+for char in sentence:
+    if char.isalpha():
+        counter[char] = counter.get(char, 0) + 1
+sorted_count = sorted(counter, key = counter.get, reverse = True)
+for key in sorted_count:
+    print(key, counter[key])
+
+"""
+例子2：在一个字典中保存了股票的代码和价格，找出股价大于100元的股票并创建一个新的字典。
+"""
+stocks = {
+    'AAPL': 191.88,
+    'GOOG': 1186.96,
+    'IBM': 149.24,
+    'ORCL': 48.44,
+    'ACN': 166.89,
+    'FB': 208.09,
+    'SYMC': 21.29
+}
+stocks_up100 = {}
+for key, value in stocks.items():
+    if value >= 100:
+        stocks_up100[key] = value
+print(stocks_up100)
+"""
+字典推导式格式：
+{新key : 新value for ... if 条件}
+"""
+stocks100 = {key: value for key, value in stocks.items() if value > 100}
+print(stocks100)
